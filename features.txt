@@ -1,3 +1,4 @@
+Hallo!
 Idee:
 Serienverwaltung:
 Eine große gemeinsame Datenbank für Serien -> einsehbar für alle User
