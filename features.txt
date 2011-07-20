@@ -1,0 +1,32 @@
+Idee:
+Serienverwaltung:
+Eine große gemeinsame Datenbank für Serien -> einsehbar für alle User
+Darin sind Serien gespeichert:
+
+<Serienname>
+	<Staffel Nr>
+		<Episoden>
+			<Ep. Nr>
+			<Datum>
+
+User können diese zu ihrer eigenen DB hinzufügen und dort weiter verwalten.
+User können Serien bewerten.
+Updates an der Hauptdatenbank (durch admin) werden an den User (welcher diese Serie geaddet hat) automatisch weitergegeben
+
+Pro User:
+User legt eigene Datenbank an.
+Für jede Serien sieht er die Staffeln
+Anzahl gesehender Folgen über Button inkrementierbar.
+
+Serienname
+	Staffel <Anzahl gesehender Eps> <gesamt Anzahl Eps>
+		<Eps. nr.> <name> <erscheinungsdatum> <interval> <comment>   <-- sind vom User einzugeben.
+
+User können Serien hinzufügen/löschen/für sich selbst bearbeiten
+User bekommen erinnerungen bei den Serien eingeblendet, wenn für diese eine neue Folge erschienen ist.
+
+
+evtl:
+Email benachrichtigungen
+Genres
+
