@@ -1,0 +1,15 @@
+HALLO!!!
+<% myU=User.find(params[:id])%>
+
+<% if myU.privacy_flag %>
+
+darfst du net !
+
+<% else %>
+
+<%= myU.name %> <br/>
+<%= myU.email %><br/>
+<%= myU.privacy_flag %> <br/>
+
+
+<% end %>

@@ -8,7 +8,13 @@
 </head>
 <body>
 
-<%= yield %>
+<%= render 'devise/loginStuff' %>
+
+<div align="center">
+	<p class="notice"><%= notice %></p>
+	<p class="alert"><%= alert %></p>
+	<%= yield %>
+</div>
 
 </body>
 </html>

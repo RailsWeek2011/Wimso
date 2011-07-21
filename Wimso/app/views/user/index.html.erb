@@ -8,9 +8,11 @@
     <th></th>
   </tr>
 
-<% @allusers.each do |post| %>
+<% @allusers.each do |user| %>
   <tr>
-    <td><%= post.name %></td>
+    <td><%= user.email %></td>
+	
+	<td><%=link_to "Profile", show_profile_path(user.id)%></td>
   </tr>
 <% end %>
 </table>

@@ -1,5 +1,7 @@
 Wimso::Application.routes.draw do
   devise_for :users
+  get "users/:id" => "user#show_profile", :as => "show_profile"
+  
  root :to => "user#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
