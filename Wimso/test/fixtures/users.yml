@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  privacy_flag: false
+  is_admin: false
+  user: 
+  series_db: 
+
+two:
+  name: MyString
+  privacy_flag: false
+  is_admin: false
+  user: 
+  series_db: 
