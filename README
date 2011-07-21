@@ -24,10 +24,6 @@ Serienname
 		<Eps. nr.> <name> <erscheinungsdatum> <interval> <comment>   <-- sind vom User einzugeben.
 
 User können Serien hinzufügen/löschen/für sich selbst bearbeiten
-User bekommen erinnerungen bei den Serien eingeblendet, wenn für diese eine neue Folge erschienen ist.
-
-
-evtl:
-Email benachrichtigungen
-Genres
+User bekommen erinnerungen bei den Serien eingeblendet, wenn für diese eine neue Folge erschienen ist, auch per Email.
+User haben euch in öffentliches Profil, auf welchem steht was sie mögen und was sie sehen / empfehlen.
 
