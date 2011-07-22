@@ -12,8 +12,10 @@ Friends: </br>
 	<% end %>
 
 <% else %>
-
-
+<%= form_tag(add_friend_path, :method => "put") do %>
+ <%= hidden_field_tag :id, u.id %>
+  <%= submit_tag("add") %>
+<% end %>
 not your Profile
 
 

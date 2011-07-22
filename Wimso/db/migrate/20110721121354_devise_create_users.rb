@@ -20,6 +20,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.timestamps
     end
     add_index :users, :user_id
+    add_index :users, :name,               :unique => true
     add_index :users, :series_db_id
     add_index :users, :email,                :unique => true
     add_index :users, :reset_password_token, :unique => true
