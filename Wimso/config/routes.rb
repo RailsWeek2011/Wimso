@@ -1,6 +1,8 @@
 Wimso::Application.routes.draw do
   devise_for :users
   get "users/:id" => "user#show_profile", :as => "show_profile"
+  put "users/:id" => "user#add_friend", :as => "add_friend"
+  
   
  root :to => "user#index"
   # The priority is based upon order of creation:

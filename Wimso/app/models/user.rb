@@ -11,9 +11,7 @@ class User < ActiveRecord::Base
   validates :name , :uniqueness => true, 
 				:presence => true, 
 				:format => { :with => /\A[a-zA-Z]+([0-9]*[a-zA-Z]*)*\z/,:message => "Only letters allowed" }
-				:length => { :in => 3..20,
-							:too_long => "%{count} characters is the maximum allowed",
-							:too_short => "%{count} characters is the minimum allowed"}
+				
   
   
   devise :database_authenticatable, :registerable,
