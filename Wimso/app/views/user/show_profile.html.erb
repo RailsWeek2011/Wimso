@@ -1,15 +1,22 @@
-HALLO!!!
-<% myU=User.find(params[:id])%>
+<% u=User.find(params[:id])%>
 
-<% if myU.privacy_flag %>
-
-darfst du net !
+<% if current_user.id == u.id  %>
+Hallo 
+<%= u.name %> <br/>
+Account settings: </br>
+<%= u.email %><br/>
+<%= u.privacy_flag %> <br/>
+Friends: </br>
+	<% u.friends.each do |friend| %>
+		<%= friend.email %> </br>
+	<% end %>
 
 <% else %>
 
-<%= myU.name %> <br/>
-<%= myU.email %><br/>
-<%= myU.privacy_flag %> <br/>
+
+not your Profile
 
 
 <% end %>
+
+TODO!!!!
