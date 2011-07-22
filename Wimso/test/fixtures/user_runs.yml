@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  interval: 1
+  comments: 
+  curr_eps: 1
+  users: 
+  runs: 
+
+two:
+  interval: 1
+  comments: 
+  curr_eps: 1
+  users: 
+  runs: 

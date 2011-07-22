@@ -1,5 +1,16 @@
 <h1>New run</h1>
 
-<%= render 'form' %>
+<%= form_tag(runs_path, :method => "post") do %>
+  <%= label_tag(:name, "name:") %>
+  <%= text_field_tag(:name) %>
+  <%= text_field_tag(:anz_staf) %>
+  <%= text_field_tag(:anz_eps) %>
+  <% if current_user.is_admin? %>
+	<%= check_box_tag(:global) %>
+  <% else %>
+	<%= check_box_tag(:global) %>
+  <% end %>
+  <%= submit_tag("Search") %>
+<% end %>
 
 <%= link_to 'Back', runs_path %>

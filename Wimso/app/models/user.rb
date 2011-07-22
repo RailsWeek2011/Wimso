@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
                           :foreign_key => 'user_id', 
                           :association_foreign_key => 'friend_id', 
                           :join_table => 'friends_users'
-  belongs_to :series_db
+  has_many :user_run
   validates :name , :uniqueness => true, 
 				:presence => true, 
 				:format => { :with => /\A[a-zA-Z]+([0-9]*[a-zA-Z]*)*\z/,:message => "Only letters allowed" }

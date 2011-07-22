@@ -9,7 +9,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.boolean :privacy_flag
       t.boolean :is_admin
       t.references :user
-      t.references :series_db
+      t.references :user_run
 
       # t.encryptable
       # t.confirmable
@@ -21,7 +21,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
     end
     add_index :users, :user_id
     add_index :users, :name,               :unique => true
-    add_index :users, :series_db_id
+    add_index :users, :user_run_id
     add_index :users, :email,                :unique => true
     add_index :users, :reset_password_token, :unique => true
     # add_index :users, :confirmation_token,   :unique => true

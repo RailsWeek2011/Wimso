@@ -6,6 +6,17 @@ Hallo
 Account settings: </br>
 <%= u.email %><br/>
 <%= u.privacy_flag %> <br/>
+my series<br/>
+<% u.user_run.each do |myrun|%>
+<%= myrun.run.name %><br/>
+
+<% end %>
+
+
+<br/>
+<br/>
+<br/>
+
 Friends: </br>
 	<% u.friends.each do |friend| %>
 		<%= friend.email %> </br>

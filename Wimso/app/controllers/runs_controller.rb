@@ -24,12 +24,14 @@ class RunsController < ApplicationController
   # GET /runs/new
   # GET /runs/new.json
   def new
-    @run = Run.new
+	  
+	  @run = Run.new
 
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @run }
     end
+    
   end
 
   # GET /runs/1/edit
@@ -40,17 +42,21 @@ class RunsController < ApplicationController
   # POST /runs
   # POST /runs.json
   def create
-    @run = Run.new(params[:run])
-
-    respond_to do |format|
-      if @run.save
-        format.html { redirect_to @run, notice: 'Run was successfully created.' }
-        format.json { render json: @run, status: :created, location: @run }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @run.errors, status: :unprocessable_entity }
-      end
-    end
+    if params[:global]
+			@run = Run.create :name=> params[:name] , :anz_staf=> params[:anz_staf], :anz_eps => params[:anz_eps], :global => params[:global]
+			@run.save
+		else
+			@run = Run.create :anz_staf=> params[:anz_staf], :anz_eps => params[:anz_eps], :global => params[:global]
+			
+			
+			puts 
+			puts 
+			puts "---------------------------------------------___"
+			puts 
+			puts 
+			@usrun = UserRun.create :user => current_user, :interval => 3, :run => @run
+		end
+		
   end
 
   # PUT /runs/1

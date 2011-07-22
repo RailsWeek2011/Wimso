@@ -10,11 +10,13 @@ class CreateRuns < ActiveRecord::Migration
       t.integer :anz_rating
       t.boolean :global
       t.references :tag
+      t.references :user_runs
 
       t.timestamps
     end
     add_index :runs, :comments_id
     add_index :runs, :episodes_id
     add_index :runs, :tag_id
+    add_index :runs, :user_runs_id
   end
 end

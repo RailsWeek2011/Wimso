@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110722124241) do
+ActiveRecord::Schema.define(:version => 20110722134214) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20110722124241) do
     t.integer  "anz_rating"
     t.boolean  "global"
     t.integer  "tag_id"
+    t.integer  "user_runs_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -60,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20110722124241) do
   add_index "runs", ["comments_id"], :name => "index_runs_on_comments_id"
   add_index "runs", ["episodes_id"], :name => "index_runs_on_episodes_id"
   add_index "runs", ["tag_id"], :name => "index_runs_on_tag_id"
+  add_index "runs", ["user_runs_id"], :name => "index_runs_on_user_runs_id"
 
   create_table "tags", :force => true do |t|
     t.string   "name"
@@ -69,6 +71,20 @@ ActiveRecord::Schema.define(:version => 20110722124241) do
   end
 
   add_index "tags", ["run_id"], :name => "index_tags_on_run_id"
+
+  create_table "user_runs", :force => true do |t|
+    t.integer  "interval"
+    t.integer  "comments_id"
+    t.integer  "curr_eps"
+    t.integer  "user_id"
+    t.integer  "run_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_runs", ["comments_id"], :name => "index_user_runs_on_comments_id"
+  add_index "user_runs", ["run_id"], :name => "index_user_runs_on_run_id"
+  add_index "user_runs", ["user_id"], :name => "index_user_runs_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -85,7 +101,7 @@ ActiveRecord::Schema.define(:version => 20110722124241) do
     t.boolean  "privacy_flag"
     t.boolean  "is_admin"
     t.integer  "user_id"
-    t.integer  "series_db_id"
+    t.integer  "user_run_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -93,7 +109,7 @@ ActiveRecord::Schema.define(:version => 20110722124241) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["name"], :name => "index_users_on_name", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-  add_index "users", ["series_db_id"], :name => "index_users_on_series_db_id"
   add_index "users", ["user_id"], :name => "index_users_on_user_id"
+  add_index "users", ["user_run_id"], :name => "index_users_on_user_run_id"
 
 end
