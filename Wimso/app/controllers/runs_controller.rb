@@ -46,7 +46,7 @@ class RunsController < ApplicationController
 			@run = Run.create :name=> params[:name] , :anz_staf=> params[:anz_staf], :anz_eps => params[:anz_eps], :global => params[:global]
 			@run.save
 		else
-			@run = Run.create :anz_staf=> params[:anz_staf], :anz_eps => params[:anz_eps], :global => params[:global]
+			@run = Run.create  :name=> params[:name] ,:anz_staf=> params[:anz_staf], :anz_eps => params[:anz_eps], :global => params[:global]
 			
 			
 			puts 
