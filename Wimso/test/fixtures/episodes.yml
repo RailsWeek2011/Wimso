@@ -6,7 +6,7 @@ one:
   title: MyString
   rating: 9.99
   anz_rating: 1
-  serie: 
+  run: 
 
 two:
   nr: 1
@@ -14,4 +14,4 @@ two:
   title: MyString
   rating: 9.99
   anz_rating: 1
-  serie: 
+  run: 

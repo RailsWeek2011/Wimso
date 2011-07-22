@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  anz_staf: 1
+  anz_eps: 1
+  rating: 9.99
+  comments: 
+  episodes: 
+  anz_rating: 1
+  global: false
+  tag: 
+
+two:
+  name: MyString
+  anz_staf: 1
+  anz_eps: 1
+  rating: 9.99
+  comments: 
+  episodes: 
+  anz_rating: 1
+  global: false
+  tag: 

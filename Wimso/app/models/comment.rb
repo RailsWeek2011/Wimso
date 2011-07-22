@@ -1,4 +1,4 @@
 class Comment < ActiveRecord::Base
-  belongs_to :serie
+  has_and_belongs_to_many :run
   belongs_to :user
 end

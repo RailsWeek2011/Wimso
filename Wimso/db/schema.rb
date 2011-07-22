@@ -10,17 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110722112141) do
+ActiveRecord::Schema.define(:version => 20110722124241) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
-    t.integer  "serie_id"
+    t.integer  "run_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["serie_id"], :name => "index_comments_on_serie_id"
+  add_index "comments", ["run_id"], :name => "index_comments_on_run_id"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "episodes", :force => true do |t|
@@ -29,12 +29,12 @@ ActiveRecord::Schema.define(:version => 20110722112141) do
     t.string   "title"
     t.decimal  "rating"
     t.integer  "anz_rating"
-    t.integer  "serie_id"
+    t.integer  "run_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "episodes", ["serie_id"], :name => "index_episodes_on_serie_id"
+  add_index "episodes", ["run_id"], :name => "index_episodes_on_run_id"
 
   create_table "friends_users", :id => false, :force => true do |t|
     t.integer "user_id"
@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(:version => 20110722112141) do
 
   add_index "friends_users", ["user_id", "friend_id"], :name => "index_friends_users_on_user_id_and_friend_id"
 
-  create_table "series", :force => true do |t|
-    t.text     "name"
+  create_table "runs", :force => true do |t|
+    t.string   "name"
     t.integer  "anz_staf"
     t.integer  "anz_eps"
     t.decimal  "rating"
@@ -52,12 +52,23 @@ ActiveRecord::Schema.define(:version => 20110722112141) do
     t.integer  "episodes_id"
     t.integer  "anz_rating"
     t.boolean  "global"
+    t.integer  "tag_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "series", ["comments_id"], :name => "index_series_on_comments_id"
-  add_index "series", ["episodes_id"], :name => "index_series_on_episodes_id"
+  add_index "runs", ["comments_id"], :name => "index_runs_on_comments_id"
+  add_index "runs", ["episodes_id"], :name => "index_runs_on_episodes_id"
+  add_index "runs", ["tag_id"], :name => "index_runs_on_tag_id"
+
+  create_table "tags", :force => true do |t|
+    t.string   "name"
+    t.integer  "run_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tags", ["run_id"], :name => "index_tags_on_run_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false

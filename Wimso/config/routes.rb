@@ -1,9 +1,11 @@
 Wimso::Application.routes.draw do
-  resources :comments
+  resources :runs
 
   resources :episodes
 
-  resources :series
+  resources :comments
+
+  resources :tags
 
   devise_for :users
   get "users/:id" => "user#show_profile", :as => "show_profile"

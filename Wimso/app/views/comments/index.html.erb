@@ -3,7 +3,7 @@
 <table>
   <tr>
     <th>Content</th>
-    <th>Serie</th>
+    <th>Run</th>
     <th>User</th>
     <th></th>
     <th></th>
@@ -13,7 +13,7 @@
 <% @comments.each do |comment| %>
   <tr>
     <td><%= comment.content %></td>
-    <td><%= comment.serie %></td>
+    <td><%= comment.run %></td>
     <td><%= comment.user %></td>
     <td><%= link_to 'Show', comment %></td>
     <td><%= link_to 'Edit', edit_comment_path(comment) %></td>

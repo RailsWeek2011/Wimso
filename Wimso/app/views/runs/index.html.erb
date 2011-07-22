@@ -1,0 +1,39 @@
+<h1>Listing runs</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Anz staf</th>
+    <th>Anz eps</th>
+    <th>Rating</th>
+    <th>Comments</th>
+    <th>Episodes</th>
+    <th>Anz rating</th>
+    <th>Global</th>
+    <th>Tag</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @runs.each do |run| %>
+  <tr>
+    <td><%= run.name %></td>
+    <td><%= run.anz_staf %></td>
+    <td><%= run.anz_eps %></td>
+    <td><%= run.rating %></td>
+    <td><%= run.comments %></td>
+    <td><%= run.episodes %></td>
+    <td><%= run.anz_rating %></td>
+    <td><%= run.global %></td>
+    <td><%= run.tag %></td>
+    <td><%= link_to 'Show', run %></td>
+    <td><%= link_to 'Edit', edit_run_path(run) %></td>
+    <td><%= link_to 'Destroy', run, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Run', new_run_path %>

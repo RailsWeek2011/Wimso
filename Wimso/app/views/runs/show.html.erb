@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @run.name %>
+</p>
+
+<p>
+  <b>Anz staf:</b>
+  <%= @run.anz_staf %>
+</p>
+
+<p>
+  <b>Anz eps:</b>
+  <%= @run.anz_eps %>
+</p>
+
+<p>
+  <b>Rating:</b>
+  <%= @run.rating %>
+</p>
+
+<p>
+  <b>Comments:</b>
+  <%= @run.comments %>
+</p>
+
+<p>
+  <b>Episodes:</b>
+  <%= @run.episodes %>
+</p>
+
+<p>
+  <b>Anz rating:</b>
+  <%= @run.anz_rating %>
+</p>
+
+<p>
+  <b>Global:</b>
+  <%= @run.global %>
+</p>
+
+<p>
+  <b>Tag:</b>
+  <%= @run.tag %>
+</p>
+
+
+<%= link_to 'Edit', edit_run_path(@run) %> |
+<%= link_to 'Back', runs_path %>

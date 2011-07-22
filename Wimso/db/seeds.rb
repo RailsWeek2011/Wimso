@@ -16,7 +16,7 @@ u2.friends << u1
 u1.save
 u2.save
 
-s1 = Serie.create :name => "Breaking Bad"
+s1 = Run.create :name => "Breaking Bad"
 e1 = Episode.create :title => "Pilot"
 
 s1.episodes << e1
