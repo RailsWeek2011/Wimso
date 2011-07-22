@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  nr: 1
+  datum: 2011-07-22
+  title: MyString
+  rating: 9.99
+  anz_rating: 1
+  serie: 
+
+two:
+  nr: 1
+  datum: 2011-07-22
+  title: MyString
+  rating: 9.99
+  anz_rating: 1
+  serie: 

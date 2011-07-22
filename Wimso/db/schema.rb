@@ -10,7 +10,31 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110721121354) do
+ActiveRecord::Schema.define(:version => 20110722112141) do
+
+  create_table "comments", :force => true do |t|
+    t.text     "content"
+    t.integer  "serie_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["serie_id"], :name => "index_comments_on_serie_id"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
+  create_table "episodes", :force => true do |t|
+    t.integer  "nr"
+    t.date     "datum"
+    t.string   "title"
+    t.decimal  "rating"
+    t.integer  "anz_rating"
+    t.integer  "serie_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "episodes", ["serie_id"], :name => "index_episodes_on_serie_id"
 
   create_table "friends_users", :id => false, :force => true do |t|
     t.integer "user_id"
@@ -18,6 +42,22 @@ ActiveRecord::Schema.define(:version => 20110721121354) do
   end
 
   add_index "friends_users", ["user_id", "friend_id"], :name => "index_friends_users_on_user_id_and_friend_id"
+
+  create_table "series", :force => true do |t|
+    t.text     "name"
+    t.integer  "anz_staf"
+    t.integer  "anz_eps"
+    t.decimal  "rating"
+    t.integer  "comments_id"
+    t.integer  "episodes_id"
+    t.integer  "anz_rating"
+    t.boolean  "global"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "series", ["comments_id"], :name => "index_series_on_comments_id"
+  add_index "series", ["episodes_id"], :name => "index_series_on_episodes_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
