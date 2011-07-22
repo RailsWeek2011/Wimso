@@ -5,7 +5,8 @@ class CreateFriendsUsersJoinTable < ActiveRecord::Migration
        t.integer :friend_id
        
      end
-     add_index :friends_users, [:user_id, :friend_id]
+     
+     add_index :friends_users, [:user_id, :friend_id], :unique => true
   end
 
 end
