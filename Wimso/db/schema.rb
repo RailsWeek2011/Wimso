@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(:version => 20110722112141) do
     t.integer "friend_id"
   end
 
-  add_index "friends_users", ["user_id", "friend_id"], :name => "index_friends_users_on_user_id_and_friend_id"
+  add_index "friends_users", ["user_id", "friend_id"], :name => "index_friends_users_on_user_id_and_friend_id", :unique => true
 
   create_table "series", :force => true do |t|
     t.text     "name"
