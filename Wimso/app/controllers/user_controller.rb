@@ -1,9 +1,6 @@
 class UserController < ApplicationController
 	
-	before_filter :authenticate_user!, :except => [:index]
-	def index
-		@allusers=User.all
-	end
+	before_filter :authenticate_user!
 	def show_profile
 		@allusers=User.all
 	end

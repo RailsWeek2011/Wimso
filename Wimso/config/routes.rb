@@ -12,7 +12,7 @@ Wimso::Application.routes.draw do
   put "users/:id" => "user#add_friend", :as => "add_friend"
   
   
- root :to => "user#index"
+ root :to => "global#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
