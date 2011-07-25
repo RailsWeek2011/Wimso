@@ -1,6 +1,8 @@
 class RunsController < ApplicationController
   # GET /runs
   # GET /runs.json
+  before_filter :authenticate_user!
+  
   def index
     @runs = Run.all
 
@@ -24,7 +26,6 @@ class RunsController < ApplicationController
   # GET /runs/new
   # GET /runs/new.json
   def new
-	  
 	  @run = Run.new
 
     respond_to do |format|
@@ -36,7 +37,12 @@ class RunsController < ApplicationController
 
   # GET /runs/1/edit
   def edit
-    @run = Run.find(params[:id])
+	  if current_user.is_admin
+	    @run = Run.find(params[:id])
+	    else
+		flash[ :alert] = "no permission"
+		redirect_to run_path params[:id]
+	    end    
   end
 
   # POST /runs
@@ -48,42 +54,55 @@ class RunsController < ApplicationController
 		else
 			@run = Run.create  :name=> params[:name] ,:anz_staf=> params[:anz_staf], :anz_eps => params[:anz_eps], :global => params[:global]
 			
-			
-			puts 
-			puts 
-			puts "---------------------------------------------___"
-			puts 
-			puts 
 			@usrun = UserRun.create :user => current_user, :interval => 3, :run => @run
 		end
-		
+		redirect_to runs_path
   end
 
   # PUT /runs/1
   # PUT /runs/1.json
   def update
-    @run = Run.find(params[:id])
+	  if current_user.is_admin
+	    @run = Run.find(params[:id])
 
-    respond_to do |format|
-      if @run.update_attributes(params[:run])
-        format.html { redirect_to @run, notice: 'Run was successfully updated.' }
-        format.json { head :ok }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @run.errors, status: :unprocessable_entity }
-      end
-    end
+	    respond_to do |format|
+		      if @run.update_attributes(params[:run])
+			format.html { redirect_to @run, notice: 'Run was successfully updated.' }
+			format.json { head :ok }
+		      else
+			format.html { render action: "edit" }
+			format.json { render json: @run.errors, status: :unprocessable_entity }
+		      end
+		end
+	end
   end
 
   # DELETE /runs/1
   # DELETE /runs/1.json
   def destroy
-    @run = Run.find(params[:id])
-    @run.destroy
+	if current_user.is_admin
+	    @run = Run.find(params[:id])
+	    
+	    allrun=UserRun.all
+	    allrun.each do |r|
+		if (r.run_id.to_i == params[:id].to_i)
+			uid=r.user_id
+			myu=User.find uid	
+			myur=myu.user_run
+			myur=myur.delete_if {|x| x.run_id == params[:id] } 
+			myu.save
+			r.destroy
+			
+		end
+		
+	end
+	    @run.destroy
+	
 
-    respond_to do |format|
-      format.html { redirect_to runs_url }
-      format.json { head :ok }
-    end
+	    respond_to do |format|
+	      format.html { redirect_to runs_url }
+	      format.json { head :ok }
+		end
+	  end
   end
 end

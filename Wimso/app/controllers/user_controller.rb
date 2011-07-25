@@ -1,13 +1,9 @@
 class UserController < ApplicationController
 	
-	before_filter :authenticate_user!, :except => [:index]
-	def index
-		@allusers=User.all
-	end
+	before_filter :authenticate_user!
 	def show_profile
 		@allusers=User.all
 	end
-	
 	def add_friend
 		puts "----------------------------"
 		puts params[:id]
@@ -16,11 +12,12 @@ class UserController < ApplicationController
 		
 		rescue
 			flash[ :notice] = "already in list"
-			redirect_to show_profile_path current_user.id
+			redirect_to show_profile_path params[:id]
 			
 			return
 		end
-			redirect_to show_profile_path
+		flash[ :notice] = "adding success"
+			redirect_to show_profile_path params[:id]
 		
 	end
 	

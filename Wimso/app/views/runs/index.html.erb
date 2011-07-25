@@ -6,34 +6,48 @@
     <th>Anz staf</th>
     <th>Anz eps</th>
     <th>Rating</th>
-    <th>Comments</th>
-    <th>Episodes</th>
-    <th>Anz rating</th>
-    <th>Global</th>
-    <th>Tag</th>
+    <th>Tags</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
 
 <% @runs.each do |run| %>
+<% if run.global %>
   <tr>
     <td><%= run.name %></td>
     <td><%= run.anz_staf %></td>
     <td><%= run.anz_eps %></td>
     <td><%= run.rating %></td>
-    <td><%= run.comments %></td>
-    <td><%= run.episodes %></td>
-    <td><%= run.anz_rating %></td>
-    <td><%= run.global %></td>
     <td><%= run.tag %></td>
     <td><%= link_to 'Show', run %></td>
+    
+    <% if current_user.is_admin %>
+    <td><%= link_to 'Edit', edit_run_path(run) %></td>
+    <td><%= link_to 'Destroy', run, confirm: 'Are you sure?', method: :delete %></td>
+    <% end %>
+  </tr>
+  <% end %>
+<% end %>
+
+<% @runs.each do |run| %>
+<% if current_user.is_admin && !run.global %>
+
+<tr> ------------</tr>
+  <tr>
+    <td><%= run.name %></td>
+    <td><%= run.anz_staf %></td>
+    <td><%= run.anz_eps %></td>
+    <td><%= run.rating %></td>
+    <td><%= run.tag %></td>
     <td><%= link_to 'Edit', edit_run_path(run) %></td>
     <td><%= link_to 'Destroy', run, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
+  <% end %>
 <% end %>
 </table>
 
 <br />
-
+<% if current_user.is_admin %>
 <%= link_to 'New Run', new_run_path %>
+<% end %>

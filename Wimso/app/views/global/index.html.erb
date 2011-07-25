@@ -1,0 +1,47 @@
+<h1>Welcome to Wimso</h1>
+<h2> rest-info </h2>
+<% if not user_signed_in? %>
+ <h3><%= link_to('Register', new_user_registration_path)  %><br/>
+  <%= link_to('Login', new_user_session_path)  %>  <br/></h3>
+ <% end %>
+
+currently available series: </br>
+
+<table>
+<tr>
+<th> Title </th>
+<th></th>
+<% @allruns.each do |run| %>
+<% if run.global %>
+  <tr>
+    <td><%= run.name %></td>
+	<% if user_signed_in?  %>
+	<td><%=link_to "details", runs_path(run.id)%></td>
+	
+	<% end %>
+  </tr>
+  <% end %>
+<% end %>
+</table>
+
+
+<% if user_signed_in?  %>
+<br/>
+<h2> Users</h2>
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+  </tr>
+
+<% @allusers.each do |user| %>
+  <tr>
+    <td><%= user.name %></td>
+    <% if user_signed_in? %>
+	<td><%=link_to "Profile", show_profile_path(user.id)%></td>
+	<% end %>
+  </tr>
+<% end %>
+</table>
+<% end %>
+<br />

@@ -8,10 +8,14 @@ Account settings: </br>
 <%= u.privacy_flag %> <br/>
 my series<br/>
 <% u.user_run.each do |myrun|%>
-<%= myrun.run.name %><br/>
+<%dieid= myrun.run_id %>
+<%=Run.find(dieid).name %>
 
+<br/>
+<br/>
 <% end %>
-
+<%= link_to 'New Run', new_run_path %>
+<br/>
 
 <br/>
 <br/>
