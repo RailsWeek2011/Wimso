@@ -2,15 +2,17 @@
 
 <%= form_tag(runs_path, :method => "post") do %>
   <%= label_tag(:name, "name:") %>
-  <%= text_field_tag(:name) %>
-  <%= text_field_tag(:anz_staf) %>
-  <%= text_field_tag(:anz_eps) %>
+  <%= text_field_tag(:name) %><br/>
+  <%= label_tag(:anz_staf, "anz_staffeln:") %>
+  <%= text_field_tag(:anz_staf) %><br/>
+  <%= label_tag(:anz_staf, "anz_episodes:") %>
+  <%= text_field_tag(:anz_eps) %><br/>
   <% if current_user.is_admin? %>
 	<%= check_box_tag(:global) %>
   <% else %>
-	<%= check_box_tag(:global) %>
+	<%= hidden_field_tag(:global, false) %>
   <% end %>
-  <%= submit_tag("Search") %>
+  <%= submit_tag("create") %>
 <% end %>
 
 <%= link_to 'Back', runs_path %>

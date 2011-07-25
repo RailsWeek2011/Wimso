@@ -1,3 +1,12 @@
+<div align="center">
+<%= link_to "index", root_path %>
+<%= link_to "serien", runs_path %>
+<% if user_signed_in? %>
+<%= link_to "dashboard", show_profile_path(current_user.id) %>
+<% end %>
+</div>
+
+
 
 <div align="right">
 <% if user_signed_in? %>

@@ -56,7 +56,7 @@ class RunsController < ApplicationController
 			
 			@usrun = UserRun.create :user => current_user, :interval => 3, :run => @run
 		end
-		
+		redirect_to runs_path
   end
 
   # PUT /runs/1
@@ -82,7 +82,22 @@ class RunsController < ApplicationController
   def destroy
 	if current_user.is_admin
 	    @run = Run.find(params[:id])
+	    
+	    allrun=UserRun.all
+	    allrun.each do |r|
+		if (r.run_id.to_i == params[:id].to_i)
+			uid=r.user_id
+			myu=User.find uid	
+			myur=myu.user_run
+			myur=myur.delete_if {|x| x.run_id == params[:id] } 
+			myu.save
+			r.destroy
+			
+		end
+		
+	end
 	    @run.destroy
+	
 
 	    respond_to do |format|
 	      format.html { redirect_to runs_url }
