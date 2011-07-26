@@ -22,6 +22,7 @@ end
   get "/user/:id/edt" => "user#edt_ur", :as => "edit_ur"
   delete "/user/del/:id" => "user#del_ur", :as => "delete_ur"
 
+  #put    "/runs/:id/up" => "runs#update", :as => "update_run"
 
   root :to => "global#index"
   # The priority is based upon order of creation:

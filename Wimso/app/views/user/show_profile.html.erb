@@ -28,11 +28,40 @@ Friends: </br>
 	<% end %>
 
 <% else %>
-<%= form_tag(add_friend_path, :method => "put") do %>
- <%= hidden_field_tag :id, u.id %>
-  <%= submit_tag("add") %>
+
+
+
+<% show = false %>
+<% current_user.friends.each do |fr| %>
+	<% if fr.id == u.id %>
+		<% show = true %>
+	<%end%>
+<%end%>	
+
+
+<% if show %>
+		<%= u.name %> is your friend.</br>
+		Email: <%= u.email %></br>
+		<%if u.privacy_flag %>
+			This User doesn't allow public viewing of the Series he is watching.</br>
+		<%else%>
+			This User is watching.</br>
+			<% u.user_run.each do |myrun|%>
+			<%dieid= myrun.run_id %>
+			<%=Run.find(dieid).name %></br>
+			<br/>
+			<% end %>
+		<%end%>
+<% else %>
+		<%= u.name %> is  not your friend.</br>
+		<%= form_tag(add_friend_path, :method => "put") do %>
+		 <%= hidden_field_tag :id, u.id %>
+		  <%= submit_tag("add as a friend") %>
 <% end %>
-not your Profile
+
+<% end %>
+
+
 
 
 <% end %>

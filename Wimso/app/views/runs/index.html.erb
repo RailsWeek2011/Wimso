@@ -25,15 +25,15 @@
     <td><%= link_to 'Edit', edit_run_path(run) %></td>
     <td><%= link_to 'Destroy', run, confirm: 'Are you sure?', method: :delete %></td>
     <% end %>
-    <% if current_user.user_run.size != 0 %>
-    <% current_user.user_run.each do |ur| %>
-	    <% if ur.run_id != run.id && ur.user.id != current_user.id %>
-	    <td><%= button_to("to myList", my_list_add_path(run.id)) %></td>
-	    <%end%>
-    <%end%>
-    <%else%>
-      <td><%= button_to("to myList", my_list_add_path(run.id)) %></td>
-    <%end%>
+	<% flag = true %>
+	<%current_user.user_run.each do |ur1| %>
+		<% if ur1.run_id == run.id && ur1.user_id == current_user.id%>
+    			<% flag = false %>
+		<%end%>
+	<%end%>
+	<% if flag %>
+		<td><%= button_to("to myList", my_list_add_path(run.id)) %></td>
+	<%end%>
   </tr>
   <% end %>
 <% end %>

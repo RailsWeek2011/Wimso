@@ -7,11 +7,15 @@
   <%= text_field_tag(:anz_staf) %><br/>
   <%= label_tag(:anz_staf, "anz_episodes:") %>
   <%= text_field_tag(:anz_eps) %><br/>
+<%= label_tag(:tag, "Tags:") %> Seperate by comma -> tag1,tag2,...,tagn</br>
+  <%= text_field_tag(:tag) %><br/>
+
   <% if current_user.is_admin? %>
-	<%= check_box_tag(:global) %>
+	Global?<%= check_box_tag(:global) %>
   <% else %>
 	<%= hidden_field_tag(:global, false) %>
   <% end %>
+
   <%= submit_tag("create") %>
 <% end %>
 

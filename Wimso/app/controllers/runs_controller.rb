@@ -5,7 +5,8 @@ class RunsController < ApplicationController
   
   def index
     @runs = Run.all
-
+   
+	
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @runs }
@@ -48,13 +49,43 @@ class RunsController < ApplicationController
   # POST /runs
   # POST /runs.json
   def create
-    if params[:global]
-			@run = Run.create :name=> params[:name] , :anz_staf=> params[:anz_staf], :anz_eps => params[:anz_eps], :global => params[:global]
-			@run.save
+	@run = Run.create :name=> params[:name] ,:rating => 0, :anz_rating => 0, :anz_staf=> params[:anz_staf], :anz_eps => params[:anz_eps], :global => params[:global]
+        tag = params[:tag].split(',')
+	
+	tf = Tag.new
+
+	tag.each do |name|
+
+		find = false
+		if Tag.all.size != 0
+			Tag.all.each do |ta|
+				if ta.name == name
+
+					find = true;
+					tf = ta
+		
+				end
+			end
 		else
-			@run = Run.create  :name=> params[:name] ,:anz_staf=> params[:anz_staf], :anz_eps => params[:anz_eps], :global => params[:global]
+		  	tn = Tag.create :name => name
+		end
+
+		if find
+			@run.tag << tf
+			tf.save
+		else
+			tn = Tag.create :name => name
+			@run.tag << tn
+		
+		end
+		
+	end
+	
+    		if params[:global]
+		@run.save
 			
-			@usrun = UserRun.create :user => current_user, :interval => 3, :run => @run
+		else
+			@usrun = UserRun.create :user => current_user, :interval => 0, :run => @run
 		end
 		redirect_to runs_path
   end
@@ -62,19 +93,46 @@ class RunsController < ApplicationController
   # PUT /runs/1
   # PUT /runs/1.json
   def update
+
 	  if current_user.is_admin
 	    @run = Run.find(params[:id])
 
-	    respond_to do |format|
-		      if @run.update_attributes(params[:run])
-			format.html { redirect_to @run, notice: 'Run was successfully updated.' }
-			format.json { head :ok }
-		      else
-			format.html { render action: "edit" }
-			format.json { render json: @run.errors, status: :unprocessable_entity }
-		      end
+	@run.name = params[:run][:name]
+	@run.anz_staf = params[:run][:anz_staf]
+	@run.anz_eps = params[:run][:anz_eps]
+	
+	@run.global = params[:run][:global]
+	tag = params[:run][:tag].split(',')
+		tf = Tag.new
+	@run.tag= []
+	@run.save
+	tag.each do |name|
+		puts name
+		find = false
+		if Tag.all.size != 0
+			Tag.all.each do |ta|
+				if ta.name == name
+				
+					find = true;
+					tf = ta
+		
+				end
+			end
+		else
+		  	tn = Tag.create :name => name
 		end
+
+		if find
+			@run.tag << tf
+		else
+			tn = Tag.create :name => name
+			@run.tag << tn
+		end
+		
 	end
+
+	  end
+		redirect_to run_path params[:id]
   end
 
   def ratep
