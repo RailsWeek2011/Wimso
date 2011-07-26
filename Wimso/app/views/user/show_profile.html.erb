@@ -6,15 +6,16 @@ Hallo
 Account settings: </br>
 <%= u.email %><br/>
 <%= u.privacy_flag %> <br/>
-my series<br/>
+My Series<br/>
 <% u.user_run.each do |myrun|%>
 <%dieid= myrun.run_id %>
 <%=Run.find(dieid).name %>
-
+<%= link_to 'edit', edit_ur_path(myrun) %> | <%= link_to 'delete', delete_ur_path(myrun), confirm: 'Are you sure?', method: :delete %>
 <br/>
 <br/>
 <% end %>
-<%= link_to 'New Run', new_run_path %>
+Add a Series that is not in the global list</br>
+<%= link_to 'Add new Series', new_run_path %>
 <br/>
 
 <br/>
@@ -35,5 +36,3 @@ not your Profile
 
 
 <% end %>
-
-TODO!!!!

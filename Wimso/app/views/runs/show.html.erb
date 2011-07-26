@@ -17,17 +17,13 @@
 
 <p>
   <b>Rating:</b>
-  <%= @run.rating %>
-</p>
-
-<p>
-  <b>Comments:</b>
-  <%= @run.comments %>
-</p>
-
-<p>
-  <b>Episodes:</b>
-  <%= @run.episodes %>
+  <% if @run.anz_rating != 0 %>
+  <%= (@run.rating / @run.anz_rating)*100  %>%
+  <% else %>
+  <%= @run.rating %> 
+  <%end%>
+<%= button_to("+", runs_rate_p_path) %>
+<%= button_to("-", runs_rate_m_path) %>
 </p>
 
 <p>
@@ -36,15 +32,50 @@
 </p>
 
 <p>
-  <b>Global:</b>
-  <%= @run.global %>
+  <table>
+  <th>Episodes:</th>
+  <tr>
+  <td>No.</td><td>Title</td>
+  </tr>
+  <% @run.episodes.each do |ep| %>
+     <tr>
+	<td><%= ep.nr %></td>
+     	<td><%= ep.title %></td>
+     </tr>
+  <% end %>
+  </table>
 </p>
 
 <p>
-  <b>Tag:</b>
-  <%= @run.tag %>
+  <b>Tags:</b>
+  <% @run.tag.each do |tagi| %>
+     <%= tagi.name %>,
+  <% end %>
 </p>
 
+<p>
 
+  <b>Comments:</b><br/>
+    <% @run.comments.each do |com| %>
+	<%= com.user.name %> said:     
+	<%= com.content %></br>     
+  <% end %></br>
+
+</p>
+
+<p>
+<h2>Add a comment:</h2>
+<%= form_for([@run, @run.comments.build]) do |f| %>
+
+  <div class="content">
+    <%= f.text_area :content %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</p>
+
+</br>
 <%= link_to 'Edit', edit_run_path(@run) %> |
 <%= link_to 'Back', runs_path %>

@@ -11,6 +11,6 @@ class CreateUserRuns < ActiveRecord::Migration
     end
     add_index :user_runs, :comments_id
     add_index :user_runs, :user_id
-    add_index :user_runs, :run_id
+    add_index :user_runs, :run_id 
   end
 end

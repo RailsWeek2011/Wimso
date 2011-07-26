@@ -6,7 +6,7 @@
     <th>Anz staf</th>
     <th>Anz eps</th>
     <th>Rating</th>
-    <th>Tags</th>
+    <th></th>
     <th></th>
     <th></th>
     <th></th>
@@ -19,13 +19,21 @@
     <td><%= run.anz_staf %></td>
     <td><%= run.anz_eps %></td>
     <td><%= run.rating %></td>
-    <td><%= run.tag %></td>
     <td><%= link_to 'Show', run %></td>
     
     <% if current_user.is_admin %>
     <td><%= link_to 'Edit', edit_run_path(run) %></td>
     <td><%= link_to 'Destroy', run, confirm: 'Are you sure?', method: :delete %></td>
     <% end %>
+    <% if current_user.user_run.size != 0 %>
+    <% current_user.user_run.each do |ur| %>
+	    <% if ur.run_id != run.id && ur.user.id != current_user.id %>
+	    <td><%= button_to("to myList", my_list_add_path(run.id)) %></td>
+	    <%end%>
+    <%end%>
+    <%else%>
+      <td><%= button_to("to myList", my_list_add_path(run.id)) %></td>
+    <%end%>
   </tr>
   <% end %>
 <% end %>
@@ -39,7 +47,6 @@
     <td><%= run.anz_staf %></td>
     <td><%= run.anz_eps %></td>
     <td><%= run.rating %></td>
-    <td><%= run.tag %></td>
     <td><%= link_to 'Edit', edit_run_path(run) %></td>
     <td><%= link_to 'Destroy', run, confirm: 'Are you sure?', method: :delete %></td>
   </tr>

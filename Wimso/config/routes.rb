@@ -1,6 +1,10 @@
 Wimso::Application.routes.draw do
   resources :runs
 
+resources :run do
+  resources :comments
+end
+
   resources :episodes
 
   resources :comments
@@ -11,8 +15,15 @@ Wimso::Application.routes.draw do
   get "users/:id" => "user#show_profile", :as => "show_profile"
   put "users/:id" => "user#add_friend", :as => "add_friend"
   
-  
- root :to => "global#index"
+  get "/comments/new/" => "comments#new", :as => "comment_new"
+  post "/runs/:id/rate1" => "runs#ratep", :as => "runs_rate_p"
+  post "/runs/:id/rate2" => "runs#ratem", :as => "runs_rate_m"
+  post "/users/:id/addmy" => "user#add_my", :as => "my_list_add"
+  get "/user/:id/edt" => "user#edt_ur", :as => "edit_ur"
+  delete "/user/del/:id" => "user#del_ur", :as => "delete_ur"
+
+
+  root :to => "global#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

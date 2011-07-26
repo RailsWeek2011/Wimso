@@ -16,8 +16,7 @@ currently available series: </br>
   <tr>
     <td><%= run.name %></td>
 	<% if user_signed_in?  %>
-	<td><%=link_to "details", runs_path(run.id)%></td>
-	
+	<td><%=link_to "details", run%></td>
 	<% end %>
   </tr>
   <% end %>

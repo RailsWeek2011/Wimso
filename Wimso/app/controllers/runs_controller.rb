@@ -77,6 +77,22 @@ class RunsController < ApplicationController
 	end
   end
 
+  def ratep
+		@run = Run.find(params[:id])
+		@run.rating= @run.rating+1
+		@run.anz_rating= @run.anz_rating+1
+		@run.save
+      		redirect_to :back
+  end
+
+  def ratem
+		@run = Run.find(params[:id])
+		@run.anz_rating= @run.anz_rating+1
+		@run.rating= @run.rating-1
+		@run.save
+      		redirect_to :back
+  end
+
   # DELETE /runs/1
   # DELETE /runs/1.json
   def destroy
