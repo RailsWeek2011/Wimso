@@ -25,6 +25,7 @@ end
   get "/user/:id/:sgn" => "user#edt_ur", :as => "edit_ur"
   delete "/user/del/:id" => "user#del_ur", :as => "delete_ur"
   post "/episodes/new/:id" => "episodes#new", :as => "new_eps"
+  post "/user/:id/inter" => "user#edt_iur", :as => "edit_iur"
   #put    "/runs/:id/up" => "runs#update", :as => "update_run"
 
   root :to => "global#index"

@@ -8,8 +8,7 @@ class UserController < ApplicationController
 	
 
 	def add_friend
-		puts "----------------------------"
-		puts params[:id]
+
 		begin
 		(User.find(current_user.id).friends << User.find(params[:id]))
 		(User.find(params[:id]).friends << User.find(current_user.id))
@@ -25,17 +24,17 @@ class UserController < ApplicationController
 	end
 	
 	def add_my
-		puts params
+
 		ur = UserRun.create :user => current_user, :run =>  Run.find(params[:id])
 		ur.curr_eps = 0
+		ur.interval = 0
 		current_user.user_run << ur
 		current_user.save
 		redirect_to show_profile_path current_user.id
 	end
 	
 	def edt_ur
-		puts "!!!!!!!!!!!!!"
-		puts params
+
 		mr = UserRun.find params[:id].to_i
 
 		if ((params[:sgn].to_i) == 0)
@@ -49,7 +48,12 @@ class UserController < ApplicationController
 		redirect_to :back
 	end
 
-
+	def edt_iur
+		ur = UserRun.find params[:urun_id]
+		ur.interval= params[:interval].to_i
+		ur.save
+		redirect_to :back
+	end
 
 	def del_ur
 		r = UserRun.find params[:id].to_i

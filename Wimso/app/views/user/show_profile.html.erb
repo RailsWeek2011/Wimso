@@ -28,6 +28,13 @@ Public Profile</br>
 <td>Watched: <%= myrun.curr_eps %>/<%=r.anz_eps%> </td>
 <td><%= link_to '+', edit_ur_path(myrun,0) %></td>
 <td><%= link_to '-', edit_ur_path(myrun,1) %></td>
+<td>
+Interval:<%= form_tag(edit_iur_path, :method => :post) do %>
+<%= text_field_tag :interval , myrun.interval %>
+<%= hidden_field_tag :urun_id, myrun.id %>
+<%= submit_tag "Set Interval" %>
+<% end %>
+</td>
 <td><%= link_to 'delete', delete_ur_path(myrun), confirm: 'Are you sure?', method: :delete %></td>
 <% end %>
 <% end %>
