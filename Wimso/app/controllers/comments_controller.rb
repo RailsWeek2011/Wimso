@@ -47,8 +47,14 @@ class CommentsController < ApplicationController
     
     respond_to do |format|
       if @comment.save
+	if @run.name == "Chat"
+		puts "ffffff!!!!"
+		redirect_to root_path
+		return
+	else
         format.html { redirect_to @run, notice: 'Comment was successfully created.' }
         format.json { render json: @run, status: :created, location: @run }
+	end
       else
         format.html { render action: "new" }
         format.json { render json: @run.errors, status: :unprocessable_entity }

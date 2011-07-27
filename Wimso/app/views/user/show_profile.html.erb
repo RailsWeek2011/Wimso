@@ -23,11 +23,13 @@ Public Profile</br>
 <% u.user_run.each do |myrun|%>
 <%dieid= myrun.run_id %>
 <% r= Run.find(dieid) %>
+<% if r.name != "Chat" %>
 <td><%= r.name %></td>
 <td>Watched: <%= myrun.curr_eps %>/<%=r.anz_eps%> </td>
 <td><%= link_to '+', edit_ur_path(myrun,0) %></td>
 <td><%= link_to '-', edit_ur_path(myrun,1) %></td>
 <td><%= link_to 'delete', delete_ur_path(myrun), confirm: 'Are you sure?', method: :delete %></td>
+<% end %>
 <% end %>
 </tr>
 </table>

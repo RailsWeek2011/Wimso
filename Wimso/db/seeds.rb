@@ -33,6 +33,12 @@ s1.tag << t3
 
 s1.episodes << e1
 
+chat = Run.create :name => "Chat", :anz_staf => 0, :anz_eps => 0, :rating => 0, :anz_rating => 0, :global => false
+c2 = Comment.create :content => "Chat"
+chat.comments << c2
+c2.user= u4
+c2.save 
+chat.save
 
 c1 = Comment.create :content => "Great show with Bryan Cranston!"
 c1.user= u4
