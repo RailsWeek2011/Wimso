@@ -28,17 +28,13 @@ User haben euch in öffentliches Profil, auf welchem steht was sie mögen und wa
 
 
 Must have:
-Datenbank(global) für Serien / Episoden
-Datenbanken für User
-Intervalle für Serien
-Benachrichtigungen für Serientermine (email)
-Userprofile
-Zwei Berechtigungsstufen für User: Admin und normal
-Comments + Rating
-Suche für Serien / User
-
-Nice to have:
-evtl comments für episoden / rating für episoden
-freunde
-chat
-facebook / twitter anbindung und g+
+Datenbank(global) für Serien / Episoden (check)
+Datenbanken für User (check)
+Intervalle für Serien (todo)
+Benachrichtigungen für Serientermine (email) (check)
+Userprofile (check)
+Zwei Berechtigungsstufen für User: Admin und normal (check)
+Comments + Rating (check)
+Suche für Serien / User (check)
+freunde (check)
+chat (todo)
