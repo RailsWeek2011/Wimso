@@ -12,10 +12,6 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :nr %><br />
-    <%= f.number_field :nr %>
-  </div>
-  <div class="field">
     <%= f.label :datum %><br />
     <%= f.date_select :datum %>
   </div>
@@ -23,18 +19,7 @@
     <%= f.label :title %><br />
     <%= f.text_field :title %>
   </div>
-  <div class="field">
-    <%= f.label :rating %><br />
-    <%= f.text_field :rating %>
-  </div>
-  <div class="field">
-    <%= f.label :anz_rating %><br />
-    <%= f.number_field :anz_rating %>
-  </div>
-  <div class="field">
-    <%= f.label :run %><br />
-    <%= f.text_field :run %>
-  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

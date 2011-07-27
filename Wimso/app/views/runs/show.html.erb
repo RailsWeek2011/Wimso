@@ -22,8 +22,8 @@
   <% else %>
   <%= @run.rating %> 
   <%end%>
-<%= button_to("+", runs_rate_p_path) %>
-<%= button_to("-", runs_rate_m_path) %>
+<%= button_to("^", runs_rate_p_path) %>
+<%= button_to("v", runs_rate_m_path) %>
 
 </p>
 
@@ -35,6 +35,9 @@
 <p>
   <table>
   <th>Episodes:</th>
+  <% if current_user.is_admin %>
+  <th><%= button_to("+", new_eps_path(@run)) %></th>
+  <%end%>
   <tr>
   <td>No.</td><td>Title</td>
   </tr>

@@ -24,8 +24,10 @@ class EpisodesController < ApplicationController
   # GET /episodes/new
   # GET /episodes/new.json
   def new
-    @episode = Episode.new
-
+    @episode = Episode.new 
+    @episode.run  Run.all.find params[:id]
+	puts "!!!!!!!!!!!!!!"	
+	puts params
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @episode }
@@ -41,7 +43,8 @@ class EpisodesController < ApplicationController
   # POST /episodes.json
   def create
     @episode = Episode.new(params[:episode])
-
+	puts "=============="
+	puts params
     respond_to do |format|
       if @episode.save
         format.html { redirect_to @episode, notice: 'Episode was successfully created.' }
