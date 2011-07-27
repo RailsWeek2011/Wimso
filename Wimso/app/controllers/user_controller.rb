@@ -52,6 +52,7 @@ class UserController < ApplicationController
 		ur = UserRun.find params[:urun_id]
 		ur.interval= params[:interval].to_i
 		ur.save
+		
 		redirect_to :back
 	end
 
