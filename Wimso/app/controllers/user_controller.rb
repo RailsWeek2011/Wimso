@@ -1,6 +1,4 @@
 class UserController < ApplicationController
-	require_relative '../../lib/my_job'
-	include MyJob
 	
 	before_filter :authenticate_user!
 	def show_profile
@@ -54,7 +52,8 @@ class UserController < ApplicationController
 		ur = UserRun.find params[:urun_id]
 		ur.interval= params[:interval].to_i
 		ur.save
-		UserMailer.welcome(User.first).delay.deliver, :run_at => 5.seconds.from_now
+		UserMailer.delay(:run_at => 5.seconds.from_now).
+					welcome(User.find(User.first.id))
 		redirect_to :back
 	end
 
