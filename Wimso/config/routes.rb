@@ -12,6 +12,9 @@ end
   resources :tags
 
   devise_for :users
+  
+  post "/search" => "global#search", :as => "search"
+  
   get "users/:id" => "user#show_profile", :as => "show_profile"
   put "users/:id" => "user#add_friend", :as => "add_friend"
   
