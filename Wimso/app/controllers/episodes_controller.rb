@@ -25,9 +25,10 @@ class EpisodesController < ApplicationController
   # GET /episodes/new.json
   def new
     @episode = Episode.new 
-    @episode.run  Run.all.find params[:id]
+    @episode.run_id= params[:id].to_i
 	puts "!!!!!!!!!!!!!!"	
-	puts params
+	r = Run.find params[:id]
+	puts r.episodes.size
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @episode }
@@ -43,12 +44,11 @@ class EpisodesController < ApplicationController
   # POST /episodes.json
   def create
     @episode = Episode.new(params[:episode])
-	puts "=============="
-	puts params
+
     respond_to do |format|
       if @episode.save
-        format.html { redirect_to @episode, notice: 'Episode was successfully created.' }
-        format.json { render json: @episode, status: :created, location: @episode }
+        format.html { redirect_to run_path(params[:episode][:run_id]), notice: 'Episode was successfully created.' }
+
       else
         format.html { render action: "new" }
         format.json { render json: @episode.errors, status: :unprocessable_entity }
@@ -63,7 +63,7 @@ class EpisodesController < ApplicationController
 
     respond_to do |format|
       if @episode.update_attributes(params[:episode])
-        format.html { redirect_to @episode, notice: 'Episode was successfully updated.' }
+        format.html { redirect_to run_path(params[:episode][:run_id]), notice: 'Episode was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

@@ -12,14 +12,21 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :datum %><br />
-    <%= f.date_select :datum %>
-  </div>
-  <div class="field">
     <%= f.label :title %><br />
     <%= f.text_field :title %>
   </div>
+  <div class="field">
+    <%= f.label :nr %><br />
+    <%= f.number_field :nr %>
+  </div>
+  <div class="field">
+    <%= f.label :datum %><br />
+    <%= f.date_select :datum %>
+  </div>
 
+<div class="field">
+<%= f.hidden_field :run_id %>
+</div>
   <div class="actions">
     <%= f.submit %>
   </div>

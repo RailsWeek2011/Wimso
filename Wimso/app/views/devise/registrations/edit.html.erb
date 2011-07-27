@@ -15,6 +15,12 @@
   <p><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
   <%= f.password_field :current_password %></p>
 
+  <p>
+	<%= f.label :privacy_flag %>
+	<%= f.check_box :privacy_flag %> <i>(Check if you want a private Profile)</i><br />
+  </p>
+
+
   <p><%= f.submit "Update" %></p>
 <% end %>
 

@@ -27,23 +27,29 @@ class UserController < ApplicationController
 	def add_my
 		puts params
 		ur = UserRun.create :user => current_user, :run =>  Run.find(params[:id])
+		ur.curr_eps = 0
 		current_user.user_run << ur
 		current_user.save
 		redirect_to show_profile_path current_user.id
 	end
 	
 	def edt_ur
-		ur = UserRun.all
-		ur.each do |f|
-			
-			puts "SEARCH"
-			if f.id == params[:id].to_i
-				puts "FOUND!!!"
-				@u = f
-				return
+		puts "!!!!!!!!!!!!!"
+		puts params
+		mr = UserRun.find params[:id].to_i
+
+		if ((params[:sgn].to_i) == 0)
+			mr.curr_eps +=1
+		else
+			if mr.curr_eps > 0
+				mr.curr_eps -=1
 			end
 		end
+		mr.save
+		redirect_to :back
 	end
+
+
 
 	def del_ur
 		r = UserRun.find params[:id].to_i

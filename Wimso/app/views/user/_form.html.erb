@@ -1,0 +1,44 @@
+<%= form_for(@run) do |f| %>
+
+  <% if @run.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@run.errors.count, "error") %> prohibited this run from being saved:</h2>
+
+      <ul>
+      <% @run.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :anz_staf %><br />
+    <%= f.number_field :anz_staf %>
+  </div>
+  <div class="field">
+    <%= f.label :anz_eps %><br />
+    <%= f.number_field :anz_eps %>
+  </div>
+
+  <div class="field">
+    <%= f.label :global %><br />
+    <%= f.check_box :global %>
+  </div>
+
+  <div class="field">
+    
+    <%= f.label :tag %><br />
+Seperate by comma -> tag1,tag2,...,tagn</br>
+    <%= f.text_field :tag, :value => str%>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

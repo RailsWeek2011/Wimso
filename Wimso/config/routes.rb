@@ -19,7 +19,7 @@ end
   post "/runs/:id/rate1" => "runs#ratep", :as => "runs_rate_p"
   post "/runs/:id/rate2" => "runs#ratem", :as => "runs_rate_m"
   post "/users/:id/addmy" => "user#add_my", :as => "my_list_add"
-  get "/user/:id/edt" => "user#edt_ur", :as => "edit_ur"
+  get "/user/:id/:sgn" => "user#edt_ur", :as => "edit_ur"
   delete "/user/del/:id" => "user#del_ur", :as => "delete_ur"
   post "/episodes/new/:id" => "episodes#new", :as => "new_eps"
   #put    "/runs/:id/up" => "runs#update", :as => "update_run"

@@ -15,17 +15,17 @@
   <%= @run.anz_eps %>
 </p>
 
-<p>
-  <b>Rating:</b>
+<table>
+  <th>Rating:</th>
+<tr>
   <% if @run.anz_rating != 0 %>
-  <%= (@run.rating / @run.anz_rating)*100  %>%
+  <td><%= (@run.rating / @run.anz_rating)*100  %>% </td>
   <% else %>
-  <%= @run.rating %> 
-  <%end%>
-<%= button_to("^", runs_rate_p_path) %>
-<%= button_to("v", runs_rate_m_path) %>
-
-</p>
+  <td><%= @run.rating %> </td>
+  <%end%><td><%= button_to("+", runs_rate_p_path) %></td>
+	<td><%= button_to("-", runs_rate_m_path) %></td>
+</tr>
+</table>
 
 <p>
   <b>Anz rating:</b>
@@ -39,12 +39,16 @@
   <th><%= button_to("+", new_eps_path(@run)) %></th>
   <%end%>
   <tr>
-  <td>No.</td><td>Title</td>
+  <td>No.</td><td>Title</td><td>Date</td>
   </tr>
   <% @run.episodes.each do |ep| %>
      <tr>
 	<td><%= ep.nr %></td>
      	<td><%= ep.title %></td>
+	<td><%= ep.datum %></td>
+	<% if current_user.is_admin %>
+	<td><%= link_to("Edit", edit_episode_path(ep)) %></td>
+	<% end %>
      </tr>
   <% end %>
   </table>

@@ -9,13 +9,15 @@
 u1=User.create :name => "eins", :email => "admin@bar.gov", :password => "123456", :password_confirmation => "123456", :privacy_flag => false
 u2=User.create :name => "zwei", :email => "foo2@bar.gov", :password => "123456", :password_confirmation => "123456", :privacy_flag => false
 u3=User.create :name => "drei", :email => "foo3@bar.gov", :password => "123456", :password_confirmation => "123456", :privacy_flag => false
-u4=User.create :name => "Okarin", :email => "jens.mehler@mni.th-mittelessen.de", :password => "gelbanane", :password_confirmation => "gelbanane", :privacy_flag => false
+u4=User.create :name => "Okarin", :email => "jens.mehler@mni.th-mittelessen.de", :password => "gelbanane", :password_confirmation => "gelbanane"
 u4.friends << u1
 u1.friends << u4
 u1.friends << u2
 u2.friends << u1
 u1.is_admin=true
 u4.is_admin=true
+u4.privacy_flag=false
+u1.privacy_flag=true
 u4.save 
 u1.save
 u2.save
