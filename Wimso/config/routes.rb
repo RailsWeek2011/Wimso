@@ -12,6 +12,9 @@ end
   resources :tags
 
   devise_for :users
+  
+  post "/search" => "global#search", :as => "search"
+  
   get "users/:id" => "user#show_profile", :as => "show_profile"
   put "users/:id" => "user#add_friend", :as => "add_friend"
   
@@ -21,6 +24,8 @@ end
   post "/users/:id/addmy" => "user#add_my", :as => "my_list_add"
   get "/user/:id/edt" => "user#edt_ur", :as => "edit_ur"
   delete "/user/del/:id" => "user#del_ur", :as => "delete_ur"
+  
+  
 
   #put    "/runs/:id/up" => "runs#update", :as => "update_run"
 
