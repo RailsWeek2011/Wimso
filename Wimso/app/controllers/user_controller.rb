@@ -53,7 +53,7 @@ class UserController < ApplicationController
 		ur.interval= params[:interval].to_i
 		ur.save
 		UserMailer.delay(:run_at => 5.seconds.from_now).
-					welcome(User.find(User.first.id))
+					welcome(User.find(User.first.id)).deliver
 		redirect_to :back
 	end
 
