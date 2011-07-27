@@ -39,7 +39,7 @@
 <% end %>
 
 <% @runs.each do |run| %>
-<% if current_user.is_admin && !run.global %>
+<% if current_user.is_admin && !run.global && run.name != "Chat" %>
 
 <tr> ------------</tr>
   <tr>
