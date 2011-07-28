@@ -60,7 +60,7 @@ Add a Series that is not in the global list</br>
 <p>
 Friends: </br>
 	<% u.friends.each do |friend| %>
-		<%= friend.email %> <%=link_to "Profile", show_profile_path(friend.id)%> </br>
+		<%= friend.name %> <%=link_to "Profile", show_profile_path(friend.id)%> </br>
 	<% end %>
 
 <% else %>

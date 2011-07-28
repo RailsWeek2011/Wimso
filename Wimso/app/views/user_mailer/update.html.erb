@@ -1,5 +1,5 @@
 <% begin %>
-	<% if( !( @user.is_nil? || @userrun.is_nil?)) %>
+	<% if( !( @user.nil? || @userrun.nil? )) %>
 		Hallo <%= @user.name  %>
 		<p>soeben ist eine neue Folge von 
 		<%= Run.find(@userrun.run_id).name %> erschienen !</p>

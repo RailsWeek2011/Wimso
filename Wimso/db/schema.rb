@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20110727134629) do
 
   create_table "user_runs", :force => true do |t|
     t.integer  "interval"
+    t.date     "iv_change"
     t.integer  "comments_id"
     t.integer  "curr_eps"
     t.integer  "user_id"

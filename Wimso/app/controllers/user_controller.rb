@@ -40,16 +40,27 @@ class UserController < ApplicationController
 		redirect_to :back
 	end
 
+	def add_my
+
+		ur = UserRun.create :user => current_user, :run =>  Run.find(params[:id])
+		ur.curr_eps = 0
+		ur.interval = 0
+		current_user.user_run << ur
+		current_user.save
+		redirect_to show_profile_path current_user.id
+	end
+
 	def edt_iur
 		ur = UserRun.find params[:urun_id]
 		ur.interval= params[:interval].to_i
 		ur.iv_change = Time.now
 		ur.save
+		if ur.interval > 0
 		UserMailer.delay(:run_at => ur.interval.seconds.from_now).update(ur)
-							#UserMailer.delay(:run_at => 5.seconds.from_now).
-			#welcome(User.find(User.first.id))
 					
-					
+		else 
+
+		end	
 		redirect_to :back
 	end
 
