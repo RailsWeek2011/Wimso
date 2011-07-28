@@ -1,0 +1,8 @@
+div#users {
+   width: 700px;
+   text-align: right;
+   padding: 5px;
+   background-color: #000000;
+   border: 1px solid #ccc;
+   margin-bottom: 20px;
+}

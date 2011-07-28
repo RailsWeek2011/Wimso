@@ -1,11 +1,15 @@
+<div id="content">
 <h1>Welcome to Wimso</h1>
 <h2> rest-info </h2>
 <% if not user_signed_in? %>
  <h3><%= link_to('Register', new_user_registration_path)  %><br/>
   <%= link_to('Login', new_user_session_path)  %>  <br/></h3>
  <% end %>
+</div>
 
-currently available series: </br>
+
+<div id="series">
+currently available series:
 <table>
 <tr>
 <th></th>
@@ -27,6 +31,9 @@ currently available series: </br>
 </br>
 <% if user_signed_in?  %>
 <br/>
+</div>
+
+<div id="users">
 <h2> Users</h2>
 <table>
   <tr>
@@ -47,12 +54,11 @@ currently available series: </br>
 
 <% end %>
 </table>
-<br/>
-<br/>
-<div>
+</div>
+
+<div id="chat">
   <b>Chat:</b><br/>
 <%= render 'global/comments' %>
 <%= render 'global/comments_post' %>
-
 </div>
 

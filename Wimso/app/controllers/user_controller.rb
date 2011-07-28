@@ -23,6 +23,20 @@ class UserController < ApplicationController
 			redirect_to show_profile_path params[:id]
 		
 	end
+
+	def del_fr
+		puts params[:id]
+		f = current_user.friends
+		f.each do |a|
+			if a.id == params[:id].to_i
+				f.delete a
+			end
+		end
+		puts "!!!!!!!!!"
+		flash[ :notice] = "Friend deleted"
+
+		redirect_to :back
+	end
 	
 	
 	def edt_ur
