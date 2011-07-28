@@ -26,7 +26,7 @@ class EpisodesController < ApplicationController
   def new
     @episode = Episode.new 
     @episode.run_id= params[:id].to_i
-	puts "!!!!!!!!!!!!!!"	
+
 	r = Run.find params[:id]
 	puts r.episodes.size
     respond_to do |format|

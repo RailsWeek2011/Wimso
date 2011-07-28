@@ -49,7 +49,14 @@ class RunsController < ApplicationController
   # POST /runs
   # POST /runs.json
   def create
-	@run = Run.create :name=> params[:name] ,:rating => 0, :anz_rating => 0, :anz_staf=> params[:anz_staf], :anz_eps => params[:anz_eps], :global => params[:global]
+	@run = Run.create :name=> params[:name] ,
+		:rating => 0, 
+		:anz_rating => 0, 
+		:anz_staf=> params[:anz_staf], 
+		:anz_eps => params[:anz_eps], 
+		:global => params[:global]
+	
+
         tag = params[:tag].split(',')
 	
 	tf = Tag.new
@@ -81,12 +88,14 @@ class RunsController < ApplicationController
 		
 	end
 	
-    		if params[:global]
+    		if @run.global
 		@run.save
-			
+
 		else
+
 			@usrun = UserRun.create :user => current_user, :curr_eps => 0, :interval => 0, :run => @run
 		end
+		flash[ :notice] = "Successfully created"
 		redirect_to runs_path
   end
 
@@ -132,7 +141,10 @@ class RunsController < ApplicationController
 	end
 
 	  end
-		redirect_to run_path params[:id]
+	
+	flash[ :notice] = "Update success"
+	redirect_to run_path params[:id]
+		
   end
 
   def ratep
@@ -174,7 +186,7 @@ class RunsController < ApplicationController
 	
 
 	    respond_to do |format|
-	      format.html { redirect_to runs_url }
+	      format.html { redirect_to runs_url,  notice: 'Deletion complete.' }
 	      format.json { head :ok }
 		end
 	  end

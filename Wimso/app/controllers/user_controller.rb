@@ -37,16 +37,17 @@ class UserController < ApplicationController
 			end
 		end
 		mr.save
+		flash[ :notice] = "Update success"
 		redirect_to :back
 	end
 
 	def add_my
-
 		ur = UserRun.create :user => current_user, :run =>  Run.find(params[:id])
 		ur.curr_eps = 0
 		ur.interval = 0
 		current_user.user_run << ur
 		current_user.save
+		flash[ :notice] = "Series added"
 		redirect_to show_profile_path current_user.id
 	end
 
@@ -61,13 +62,19 @@ class UserController < ApplicationController
 					
 		else 
 
-		end	
+		end
+		flash[ :notice] = "Interval changed"	
 		redirect_to :back
 	end
 
 	def del_ur
 		r = UserRun.find params[:id].to_i
+		run = Run.find r.run_id
+		if !run.global?
+			run.destroy
+		end
 		r.destroy
+		flash[ :notice] = "Deletion complete"
 		redirect_to show_profile_path current_user.id
 	end
 	
