@@ -64,7 +64,14 @@
 
   <b>Comments:</b><br/>
     <% @run.comments.each do |com| %>
-	<%= com.user.name %> said:     
+
+        <% if com.user %>
+                <%= com.user.name %> :</br>
+        <% else %>
+                Anonymous :</br>
+        <% end %>
+	
+
 	<%= com.content %></br>     
   <% end %></br>
 

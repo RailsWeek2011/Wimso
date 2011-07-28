@@ -55,7 +55,11 @@ currently available series: </br>
     <% i = 0 %>
     <% chat.comments.reverse.each do |com| %>
 	<% if i > 17 %> <% break %> <% end %>
-	<%= com.user.name %> :</br>    
+	<% if com.user %>
+		<%= com.user.name %> :</br>    
+	<% else %>
+		Anonymous :</br>
+	<% end %>	
 	<%= com.content %></br>
         <% i +=1 %>     
   <% end %></br>
