@@ -28,7 +28,9 @@
 				<% if show == true %>
 					<%= link_to "add as friend", add_friend_path(:id=> user.id), :method => :put %>
 				<% else %>
+					<% if user.id != current_user.id %>
 					is your friend
+					<% end %>
 				<% end %>
 			</td>
 	  </tr>
