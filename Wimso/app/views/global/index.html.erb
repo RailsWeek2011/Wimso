@@ -6,7 +6,6 @@
  <% end %>
 
 currently available series: </br>
-<% chat = Run.new %>
 <table>
 <tr>
 <th></th>
@@ -20,7 +19,7 @@ currently available series: </br>
   </tr>
   <% else %>
 	<% if run.name == "Chat" %>
-		<% chat = run %>
+		<% @run = run %>
 	<%end%>
   <% end %>
 <% end %>
@@ -52,30 +51,8 @@ currently available series: </br>
 <br/>
 <div>
   <b>Chat:</b><br/>
-    <% i = 0 %>
-    <% chat.comments.reverse.each do |com| %>
-	<% if i > 17 %> <% break %> <% end %>
-	<% if com.user %>
-		<%= com.user.name %> :</br>    
-	<% else %>
-		Anonymous :</br>
-	<% end %>	
-	<%= com.content %></br>
-        <% i +=1 %>     
-  <% end %></br>
-
-
-<%= form_for([chat, chat.comments.build]) do |f| %>
-
-  <div class="content">
-    <%= f.text_area :content %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
-
-
+<%= render 'global/comments' %>
+<%= render 'global/comments_post' %>
 
 </div>
 

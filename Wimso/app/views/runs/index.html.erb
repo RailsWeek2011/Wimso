@@ -41,12 +41,13 @@
 <% @runs.each do |run| %>
 <% if current_user.is_admin && !run.global && run.name != "Chat" %>
 
-<tr> ------------</tr>
+
   <tr>
     <td><%= run.name %></td>
     <td><%= run.anz_staf %></td>
     <td><%= run.anz_eps %></td>
     <td><%= run.rating %></td>
+    <td>  </td>
     <td><%= link_to 'Edit', edit_run_path(run) %></td>
     <td><%= link_to 'Destroy', run, confirm: 'Are you sure?', method: :delete %></td>
   </tr>

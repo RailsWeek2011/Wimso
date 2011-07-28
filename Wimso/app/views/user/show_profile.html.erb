@@ -35,6 +35,7 @@ Public Profile</br>
 <td>Watched:</td>
 <td><%= myrun.curr_eps %>/<%=r.anz_eps%> <%= link_to '+', edit_ur_path(myrun,0) %>  <%= link_to '-', edit_ur_path(myrun,1) %> </td>
 </tr>
+<tr>
 <td>
 Interval,
 in Days
@@ -46,6 +47,7 @@ in Days
 <%= submit_tag "Set Interval" %>
 <% end %>
 </td>
+</tr>
 <% end %>
 <% end %>
 </table>
@@ -71,10 +73,19 @@ Friends: </br>
 <%end%>	
 
 
+
 <% if show %>
+
+<% showa = false %>
+<% u.friends.each do |fr| %>
+	<% if fr.id == current_user.id %>
+		<% showa = true %>
+	<%end%>
+<%end%>	
+
 		<%= u.name %> is your friend.</br>
 		Email: <%= u.email %></br>
-		<%if u.privacy_flag %>
+		<%if u.privacy_flag && !showa %>
 			This User doesn't allow public viewing of the Series he is watching.</br>
 		<%else%>
 			This User is watching.</br>

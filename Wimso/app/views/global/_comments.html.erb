@@ -1,0 +1,17 @@
+
+<% i = 0 %>
+    <% @run.comments.reverse.each do |com| %>
+	<% if i < 16 %>
+        <% if com.user %>
+                <%= com.user.name %> :</br>
+        <% else %>
+                Anonymous :</br>
+        <% end %>
+
+        <%= com.content %></br>
+	<% end %>
+	<% i += 1 %>
+  <% end %></br>
+
+
+

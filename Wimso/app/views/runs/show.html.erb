@@ -55,41 +55,15 @@
 
 <p>
   <b>Tags:</b>
-  <% @run.tag.each do |tagi| %>
-     <%= tagi.name %>,
-  <% end %>
+<% @run.tag.each do |tg| %>
+	<%= link_to tg.name, search_path(:q => tg.name), :method => :post %>
+<% end %> 
 </p>
 
 <p>
-
-  <b>Comments:</b><br/>
-    <% @run.comments.each do |com| %>
-
-        <% if com.user %>
-                <%= com.user.name %> :</br>
-        <% else %>
-                Anonymous :</br>
-        <% end %>
-	
-
-	<%= com.content %></br>     
-  <% end %></br>
-
-</p>
-
-<p>
-<h2>Add a comment:</h2>
-<%= form_for([@run, @run.comments.build]) do |f| %>
-
-  <div class="content">
-    <%= f.text_area :content %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
-</p>
-
+<b>Comments:</b></br>
+<%= render 'global/comments' %>
+<%= render 'global/comments_post' %>
 </br>
 <%= link_to 'Edit', edit_run_path(@run) %> |
 <%= link_to 'Back', runs_path %>

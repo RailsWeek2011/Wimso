@@ -85,7 +85,7 @@ class RunsController < ApplicationController
 		@run.save
 			
 		else
-			@usrun = UserRun.create :user => current_user, :interval => 0, :run => @run
+			@usrun = UserRun.create :user => current_user, :curr_eps => 0, :interval => 0, :run => @run
 		end
 		redirect_to runs_path
   end

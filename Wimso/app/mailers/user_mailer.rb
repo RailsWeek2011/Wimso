@@ -4,7 +4,7 @@ class UserMailer < ActionMailer::Base
 								
 
   
-  def welcome(ur)
+  def update(ur)
 	  begin
 		@user = User.find(ur.user_id)
 		@userrun= ur
@@ -15,19 +15,41 @@ class UserMailer < ActionMailer::Base
 			:from => "carsten.schipmann@mni.thm.de",
 			:subject => "kaputt-test")	
 		else
-			#todo check
+			if ur.iv_change + u.interval.days >= Time.now
+			ur.iv_change = Time.now
+			ur.save			
 			mail(:to => @user.email,
 				:from => "carsten.schipmann@mni.thm.de",
-				:subject => "Wimso, Dein SerienUpdate")
-			#UserMailer.delay(:run_at => 5.seconds.from_now).welcome(ur)
+				:subject => "Wimso, New Episode Update")
+			UserMailer.delay(:run_at => ur.interval.seconds.from_now).welcome(ur)
+			end
 		end
 	rescue		
-		mail(:to => "garbagegarbage@web.de",
-				:from => "carsten.schipmann@mni.thm.de",
-				:subject => "kaputt")
+	#	mail(:to => "garbagegarbage@web.de",
+	#			:from => "carsten.schipmann@mni.thm.de",
+	#			:subject => "kaputt")
 	 end
   end
   
-  
+  def newfriend(user,friend)
+	begin
+
+		if(user.is_nil? || friend.is_nil? )
+			mail(:to => "garbagegarbage@web.de",
+			:from => "carsten.schipmann@mni.thm.de",
+			:subject => "kaputt-test")	
+		else
+		@u = user
+		@f = friend
+			mail(:to => friend.email,
+				:from => "carsten.schipmann@mni.thm.de",
+				:subject => "Wimso, Neuer Freund")
+		end
+	rescue		
+	#	mail(:to => "garbagegarbage@web.de",
+	#			:from => "carsten.schipmann@mni.thm.de",
+	#			:subject => "kaputt")
+	 end
+  end
   
 end
