@@ -17,20 +17,39 @@ Public Profile</br>
 <%end%>
 
 <%= u.email %><br/>
-<p><table>
+<p><table border=1>
 <b>My Series</b>
 <tr>
+<td>
+
+<table>
+<tr> 
 <% u.user_run.each do |myrun|%>
 <%dieid= myrun.run_id %>
 <% r= Run.find(dieid) %>
 <% if r.name != "Chat" %>
-<td><%= r.name %></td>
-<td>Watched: <%= myrun.curr_eps %>/<%=r.anz_eps%> </td>
-<td><%= link_to '+', edit_ur_path(myrun,0) %></td>
-<td><%= link_to '-', edit_ur_path(myrun,1) %></td>
-<td><%= link_to 'delete', delete_ur_path(myrun), confirm: 'Are you sure?', method: :delete %></td>
+<td>Name:</td>
+<td><%= r.name %> <%= link_to 'delete', delete_ur_path(myrun), confirm: 'Are you sure?', method: :delete %></td>
+</tr>
+<tr>
+<td>Watched:</td>
+<td><%= myrun.curr_eps %>/<%=r.anz_eps%> <%= link_to '+', edit_ur_path(myrun,0) %>  <%= link_to '-', edit_ur_path(myrun,1) %> </td>
+</tr>
+<td>
+Interval,
+in Days
+</td>
+<td>
+<%= form_tag(edit_iur_path, :method => :post) do %>
+<%= text_field_tag :interval , myrun.interval %>
+<%= hidden_field_tag :urun_id, myrun.id %>
+<%= submit_tag "Set Interval" %>
+<% end %>
+</td>
 <% end %>
 <% end %>
+</table>
+</td>
 </tr>
 </table>
 <p>	

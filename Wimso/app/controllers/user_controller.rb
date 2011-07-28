@@ -49,7 +49,17 @@ class UserController < ApplicationController
 		redirect_to :back
 	end
 
-
+	def edt_iur
+		ur = UserRun.find params[:urun_id]
+		ur.interval= params[:interval].to_i
+		ur.save
+		#UserMailer.delay(:run_at => 5.seconds.from_now).welcome(ur)
+							#UserMailer.delay(:run_at => 5.seconds.from_now).
+			#welcome(User.find(User.first.id))
+					
+					
+		redirect_to :back
+	end
 
 	def del_ur
 		r = UserRun.find params[:id].to_i
