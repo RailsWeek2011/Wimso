@@ -27,7 +27,8 @@ end
   post "/episodes/new/:id" => "episodes#new", :as => "new_eps"
   post "/user/:id/inter" => "user#edt_iur", :as => "edit_iur"
   #put    "/runs/:id/up" => "runs#update", :as => "update_run"
-
+  post "/search" => "global#search", :as => "search"
+    post "/user/:id/inter" => "user#edt_iur", :as => "edit_iur"
   root :to => "global#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
