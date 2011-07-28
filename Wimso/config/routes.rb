@@ -23,6 +23,7 @@ end
   delete "/user/del/:id" => "user#del_ur", :as => "delete_ur"
   post "/episodes/new/:id" => "episodes#new", :as => "new_eps"
   #put    "/runs/:id/up" => "runs#update", :as => "update_run"
+post "/search" => "global#search", :as => "search"
 
   root :to => "global#index"
   # The priority is based upon order of creation:
