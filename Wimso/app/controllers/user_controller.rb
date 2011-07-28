@@ -56,6 +56,7 @@ class UserController < ApplicationController
 		ur.iv_change = Time.now
 		ur.save
 		if ur.interval > 0
+
 		UserMailer.delay(:run_at => ur.interval.seconds.from_now).update(ur)
 					
 		else 
