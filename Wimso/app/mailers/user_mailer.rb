@@ -6,7 +6,7 @@ class UserMailer < ActionMailer::Base
   
   def welcome(ur)
 	  begin
-		@user = User.find(25)
+		@user = User.find(ur.user_id)
 		@userrun= ur
 		Run.find(@userrun.run_id)
 		
