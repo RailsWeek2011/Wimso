@@ -15,7 +15,7 @@ class UserMailer < ActionMailer::Base
 			:from => "carsten.schipmann@mni.thm.de",
 			:subject => "kaputt-test")	
 		else
-			#TODO last modified
+			#todo check
 			mail(:to => @user.email,
 				:from => "carsten.schipmann@mni.thm.de",
 				:subject => "Wimso, Dein SerienUpdate")
