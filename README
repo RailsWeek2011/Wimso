@@ -26,15 +26,8 @@ User bekommen erinnerungen bei den Serien eingeblendet, wenn für diese eine neu
 User haben euch in öffentliches Profil, auf welchem steht was sie mögen und was sie sehen / empfehlen.
 
 
-
-Must have:
-Datenbank(global) für Serien / Episoden (check)
-Datenbanken für User (check)
-Intervalle für Serien (todo)
-Benachrichtigungen für Serientermine (email) (check)
-Userprofile (check)
-Zwei Berechtigungsstufen für User: Admin und normal (check)
-Comments + Rating (check)
-Suche für Serien / User (check)
-freunde (check)
-chat (todo)
+To Run:
+bundle update
+rake db:migrate:reset && rake db:seed
+bundle exec rake jobs:work
+rails s
