@@ -18,7 +18,7 @@
   <th>Rating:</th>
 <tr>
   <% if @run.anz_rating != 0 %>
-  <td><%= (@run.rating / @run.anz_rating)*100  %>% </td>
+  <td><%= (((@run.rating / @run.anz_rating)*100)/2)+50  %>% </td>
   <% else %>
   <td><%= @run.rating %> </td>
   <%end%><td><%= button_to("+", runs_rate_p_path) %></td>

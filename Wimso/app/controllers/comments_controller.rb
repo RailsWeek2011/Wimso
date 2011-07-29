@@ -44,17 +44,16 @@ class CommentsController < ApplicationController
     @run = Run.find(params[:run_id])
     @run.comments << @comment
     @comment.user= current_user
-    
-    respond_to do |format|
-      if @comment.save
+ 
 	if @run.name == "Chat"
-		puts "ffffff!!!!"
 		redirect_to root_path
 		return
-	else
+	end
+   
+    respond_to do |format|
+      if @comment.save
         format.html { redirect_to @run, notice: 'Comment was successfully created.' }
         format.json { render json: @run, status: :created, location: @run }
-	end
       else
         format.html { render action: "new" }
         format.json { render json: @run.errors, status: :unprocessable_entity }

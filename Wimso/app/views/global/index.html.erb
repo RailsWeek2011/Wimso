@@ -1,6 +1,6 @@
 <div id="content">
 <h1>Welcome to Wimso</h1>
-<h2> rest-info </h2>
+<h3> When is my Series online ? </h3>
 <% if not user_signed_in? %>
  <h3><%= link_to('Register', new_user_registration_path)  %><br/>
   <%= link_to('Login', new_user_session_path)  %>  <br/></h3>
@@ -57,8 +57,11 @@ currently available series:
 </div>
 
 <div id="chat">
-  <b>Chat:</b><br/>
+  <b>Chat</b><br/>
+  Mindestens 10 maximal 150 Zeichen.<br/>
 <%= render 'global/comments' %>
+<% if user_signed_in?  %>
 <%= render 'global/comments_post' %>
+<%end%>
 </div>
 

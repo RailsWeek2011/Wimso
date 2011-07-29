@@ -88,14 +88,16 @@ class RunsController < ApplicationController
 		
 	end
 	
-    		if @run.global
-		@run.save
-
+    		if @run.global && !@run.name.nil?
+			@run.save
+		
 		else
-
-			@usrun = UserRun.create :user => current_user, :curr_eps => 0, :interval => 0, :run => @run
+			if !@run.name.nil?		
+				@usrun = UserRun.create :user => current_user, :curr_eps => 0, :interval => 0, :run => @run
+			else
+				flash[ :notice] = "Successfully created"
+			end
 		end
-		flash[ :notice] = "Successfully created"
 		redirect_to runs_path
   end
 

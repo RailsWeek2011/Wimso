@@ -14,7 +14,7 @@ class UserController < ApplicationController
 		(User.find(current_user.id).friends << f )
 		UserMailer.newfriend(current_user,f).deliver
 		rescue
-			flash[ :notice] = "already in list"
+		
 			redirect_to show_profile_path params[:id]
 			
 			return

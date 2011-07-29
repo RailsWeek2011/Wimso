@@ -26,6 +26,7 @@ class GlobalController < ApplicationController
 	
 		@allruns=[]
 		Run.all.each do |ru|
+			if ru.name != "Chat"
 			allsstring.each do |sstring|
 				sstring=sstring.downcase
 				if ru.name.downcase.include? sstring
@@ -48,7 +49,7 @@ class GlobalController < ApplicationController
 				
 				
 			end
-			
+			end
 		end
 		@allruns= @allruns.uniq
 		@allruns= @allruns.sort {|x,y| x.name <=> y.name } 

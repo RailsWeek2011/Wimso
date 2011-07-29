@@ -2,7 +2,12 @@
 
 <% if user_signed_in?  %>
 <br/>
-<h2> Users</h2>
+<% if !(@allusers.empty?) %>
+<h3> Users</h3>
+<% end %>
+<% if (@allusers.empty? && @allruns.empty?) %>
+<h2>no matches found </h2>
+<% end %>
 <table>
 
 
