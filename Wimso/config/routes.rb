@@ -9,7 +9,7 @@ end
 
   resources :comments
 
-  resources :tags
+  #resources :tags
 
   devise_for :users
   
@@ -28,8 +28,11 @@ end
   post "/user/:id/inter" => "user#edt_iur", :as => "edit_iur"
   get    "/user/friend/del/:id" => "user#del_fr", :as => "delete_friend"
   post "/search" => "global#search", :as => "search"
-    post "/user/:id/inter" => "user#edt_iur", :as => "edit_iur"
+  post "/user/:id/inter" => "user#edt_iur", :as => "edit_iur"
+  delete "/episodes/del/:id" => "episodes#destroy", :as => "del_ep"
+
   root :to => "global#index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

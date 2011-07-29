@@ -7,14 +7,35 @@ class UserMailer < ActionMailer::Base
 
 		if( !user or !friend )
 			mail(:to => "wimso2011@googlemail.com",
-			:from => "jens.mehler@mni.th-mittelhessen.de",
+			:from => "wimso2011@googlemail.com",
 			:subject => "Wimso")	
 		else
 		@u = user
 		@f = friend
 			mail(:to => friend.email,
-				:from => "jens.mehler@mni.th-mittelhessen.de",
-				:subject => "Wimso, Neuer Freund")
+				:from => "wimso2011@googlemail.com",
+				:subject => "Wimso, New Friend")
+		end
+	rescue		
+	#	mail(:to => "garbagegarbage@web.de",
+	#			:from => "carsten.schipmann@mni.thm.de",
+	#			:subject => "kaputt")
+	 end
+  end
+
+  def delfriend(user,friend)
+	begin
+
+		if( !user or !friend )
+			mail(:to => "wimso2011@googlemail.com",
+			:from => "wimso2011@googlemail.com",
+			:subject => "Wimso")	
+		else
+		@u = user
+		@f = friend
+			mail(:to => friend.email,
+				:from => "wimso2011@googlemail.com",
+				:subject => "Wimso, Friend update")
 		end
 	rescue		
 	#	mail(:to => "garbagegarbage@web.de",
@@ -36,10 +57,9 @@ class UserMailer < ActionMailer::Base
                         if(@user)
                                 @userrun.iv_change=Time.now
                                 @userrun.save
-                                if ((@userrun.iv_change + @userrun.interval.days).day == (Time.now+2.days).day && @userrun.interval!=0)
+                                if ((@userrun.iv_change + @userrun.interval.days).day == (Time.now+@userrun.interval.days).day && @userrun.interval!=0)
                                     mail(:to => @user.email,
-                                        :from => "jens.mehler@mni.thm.de",
-                                        :return_path => 'jens.mehler@mni.thm.de',
+                                        :from => "wimso2011@googlemail.com",
                                         :subject => "Wimso - Reminder: New Episode") 
                                 end
                                        

@@ -88,16 +88,17 @@ class RunsController < ApplicationController
 		
 	end
 	
-    		if @run.global && !@run.name.nil?
-			@run.save
-		
-		else
-			if !@run.name.nil?		
-				@usrun = UserRun.create :user => current_user, :curr_eps => 0, :interval => 0, :run => @run
-			else
+			if @run.save
 				flash[ :notice] = "Successfully created"
+				if !@run.global		
+					@usrun = UserRun.create :user => current_user, :curr_eps => 0, :interval => 0, :run => @run
+				end
+			else
+				flash[ :notice] = "Please fill out right."
 			end
-		end
+		
+
+		
 		redirect_to runs_path
   end
 
@@ -143,8 +144,11 @@ class RunsController < ApplicationController
 	end
 
 	  end
-	
-	flash[ :notice] = "Update success"
+	if @run.save
+		flash[ :notice] = "Update success"
+	else
+		flash[ :notice] = "Update dismissed you may have missed something"
+	end
 	redirect_to run_path params[:id]
 		
   end

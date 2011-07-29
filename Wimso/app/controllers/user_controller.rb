@@ -12,7 +12,7 @@ class UserController < ApplicationController
 		begin
 		f = User.find(params[:id])
 		(User.find(current_user.id).friends << f )
-		UserMailer.newfriend(current_user,f).deliver
+		UserMailer.delay(:run_at => 2.seconds.from_now).newfriend(current_user,f)
 		rescue
 		
 			redirect_to show_profile_path params[:id]
@@ -29,12 +29,11 @@ class UserController < ApplicationController
 		f = current_user.friends
 		f.each do |a|
 			if a.id == params[:id].to_i
+				UserMailer.delay(:run_at => 2.seconds.from_now).delfriend(current_user,a)
 				f.delete a
 			end
 		end
-		puts "!!!!!!!!!"
 		flash[ :notice] = "Friend deleted"
-
 		redirect_to :back
 	end
 	
@@ -44,7 +43,9 @@ class UserController < ApplicationController
 		mr = UserRun.find params[:id].to_i
 
 		if ((params[:sgn].to_i) == 0)
+			if mr.curr_eps < mr.run.anz_eps
 			mr.curr_eps +=1
+			end
 		else
 			if mr.curr_eps > 0
 				mr.curr_eps -=1

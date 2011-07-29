@@ -57,8 +57,14 @@ currently available series:
 </div>
 
 <div id="chat">
+<% Run.all.each do |run| %>
+	<% if run.name == "Chat" %>
+		<% @run = run %>
+		<%= @run.name %>
+	<% end %>
+<% end %>
   <b>Chat</b><br/>
-  Mindestens 10 maximal 150 Zeichen.<br/>
+  Minimum 10 maximum 150 Characters.<br/>
 <%= render 'global/comments' %>
 <% if user_signed_in?  %>
 <%= render 'global/comments_post' %>

@@ -46,7 +46,7 @@
      	<td><%= ep.title %></td>
 	<td><%= ep.datum %></td>
 	<% if current_user.is_admin %>
-	<td><%= link_to("Edit", edit_episode_path(ep)) %></td>
+	<td><%= link_to("Edit", edit_episode_path(ep)) %>|<%= link_to("Delete", del_ep_path(ep), :method => :delete) %></td>
 	<% end %>
      </tr>
   <% end %>

@@ -1,8 +1,9 @@
 
 <% i = 0 %>
     <% @run.comments.reverse.each do |com| %>
+	
 	<% if i < 16 %>
-        <% if com.user %>
+        <% if !com.user.nil? %>
                 <%= com.user.name %> :</br>
         <% else %>
                 Anonymous :</br>

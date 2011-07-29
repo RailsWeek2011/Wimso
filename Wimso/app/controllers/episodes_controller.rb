@@ -29,6 +29,7 @@ class EpisodesController < ApplicationController
 
 	r = Run.find params[:id]
 	puts r.episodes.size
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @episode }
@@ -46,14 +47,17 @@ class EpisodesController < ApplicationController
     @episode = Episode.new(params[:episode])
 
     respond_to do |format|
-      if @episode.save
-        format.html { redirect_to run_path(params[:episode][:run_id]), notice: 'Episode was successfully created.' }
-
-      else
-        format.html { render action: "new" }
-        format.json { render json: @episode.errors, status: :unprocessable_entity }
-      end
-    end
+	if @episode.nr != (@episode.run.episodes.size+1)
+		format.html { redirect_to run_path(@episode.run), notice: 'Creation aborted. Episode Nr. was invalid.' }
+	else
+	      if @episode.save
+		format.html { redirect_to run_path(params[:episode][:run_id]), notice: 'Episode was successfully created.' }
+	      else
+		format.html { redirect_to run_path @episode.run }
+		format.json { render json: @episode.errors, status: :unprocessable_entity }
+	      end
+	    end
+	end
   end
 
   # PUT /episodes/1
@@ -76,10 +80,11 @@ class EpisodesController < ApplicationController
   # DELETE /episodes/1.json
   def destroy
     @episode = Episode.find(params[:id])
+    @run = @episode.run
     @episode.destroy
 
     respond_to do |format|
-      format.html { redirect_to episodes_url }
+      format.html { redirect_to run_path @run }
       format.json { head :ok }
     end
   end

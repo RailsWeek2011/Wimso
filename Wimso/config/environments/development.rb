@@ -28,6 +28,12 @@ Wimso::Application.configure do
     	  config.action_mailer.raise_delivery_errors = true
 	  config.action_mailer.delivery_method = :smtp 
  	  config.action_mailer.smtp_settings = {
-
+		    :address => "smtp.googlemail.com",
+		    :port => 587,
+		    :domain => "googlemail.com",
+		    :authentication => 'plain',
+		    :user_name => "wimso2011@googlemail.com",
+		    :password => "123456::",
+		    :enable_starttls_auto => true
 	 } 
 end

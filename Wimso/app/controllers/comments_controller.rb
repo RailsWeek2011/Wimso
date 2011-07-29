@@ -43,10 +43,13 @@ class CommentsController < ApplicationController
     @comment = Comment.new(params[:comment])
     @run = Run.find(params[:run_id])
     @run.comments << @comment
-    @comment.user= current_user
- 
+    @comment.user = current_user
+    
 	if @run.name == "Chat"
-		redirect_to root_path
+			if !(@comment.save && @run.save)
+				flash[ :notice] = "Please try again"
+			end
+			redirect_to root_path
 		return
 	end
    
