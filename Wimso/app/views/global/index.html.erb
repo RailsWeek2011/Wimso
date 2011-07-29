@@ -57,12 +57,7 @@ currently available series:
 </div>
 
 <div id="chat">
-<% Run.all.each do |run| %>
-	<% if run.name == "Chat" %>
-		<% @run = run %>
-		<%= @run.name %>
-	<% end %>
-<% end %>
+
   <b>Chat</b><br/>
   Minimum 10 maximum 150 Characters.<br/>
 <%= render 'global/comments' %>

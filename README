@@ -14,15 +14,14 @@ Updates an der Hauptdatenbank (durch admin) werden an den User (welcher diese Se
 
 Pro User:
 User legt eigene Datenbank an.
-Für jede Serien sieht er die Staffeln
 Anzahl gesehender Folgen über Button inkrementierbar.
 
 Serienname
 	Staffel <Anzahl gesehender Eps> <gesamt Anzahl Eps>
-		<Eps. nr.> <name> <erscheinungsdatum> <interval> <comment>   <-- sind vom User einzugeben.
+		<Eps. nr.> <name> <interval>
 
-User können Serien hinzufügen/löschen/für sich selbst bearbeiten
-User bekommen erinnerungen bei den Serien eingeblendet, wenn für diese eine neue Folge erschienen ist, auch per Email.
+User können Serien hinzufügen/löschen/für sich selbstbearbeiten
+User bekommen erinnerungen bei den Serien per email, wenn für diese eine neue Folge erschienen ist.
 User haben euch in öffentliches Profil, auf welchem steht was sie mögen und was sie sehen / empfehlen.
 
 

@@ -48,25 +48,25 @@ class UserMailer < ActionMailer::Base
 
 
  def update(ur_id)
-          
         @userrun= UserRun.find(ur_id)
         @user = User.find(@userrun.user_id)
         Run.find(@userrun.run_id)
         
         if(@userrun)
                         if(@user)
-                                @userrun.iv_change=Time.now
-                                @userrun.save
+												   #v raus für live    v#
                                 if ((@userrun.iv_change + @userrun.interval.days).day == (Time.now+@userrun.interval.days).day && @userrun.interval!=0)
-                                    mail(:to => @user.email,
-                                        :from => "wimso2011@googlemail.com",
-                                        :subject => "Wimso - Reminder: New Episode") 
+		                        @userrun.iv_change=Time.now
+		                        @userrun.save
+		                            mail(:to => @user.email,
+		                                :from => "wimso2011@googlemail.com",
+		                                :subject => "Wimso - Reminder: New Episode") 
+					#UserMailer.delay(:run_at => ur.interval.seconds.from_now).update(@userrun) #für livebetrieb
                                 end
                                        
                                 
                         end                
         end
-        #UserMailer.delay(:run_at => ur.interval.seconds.from_now).welcome(ur_id)
   end
 
 

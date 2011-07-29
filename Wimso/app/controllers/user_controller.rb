@@ -1,11 +1,7 @@
 class UserController < ApplicationController
 	
 	before_filter :authenticate_user!
-	def show_profile
-		@allusers=User.all
-	end
 
-	
 
 	def add_friend
 
